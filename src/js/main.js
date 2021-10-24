@@ -1,10 +1,14 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import SimpleLightbox from 'simplelightbox';
 import cardTemplate from '../templates/card.hbs';
 import PicturesApiService from './apiService';
 import refs from './refs';
 
 const { list, searchForm, sentinel } = refs;
 const picturesApiService = new PicturesApiService();
+let lightbox = new SimpleLightbox('.gallery a', {
+  /* options */
+});
 
 searchForm.addEventListener('submit', onSearch);
 
@@ -39,6 +43,7 @@ function onSearch(evt) {
 
 function appendPicturesMarkup(data) {
   list.insertAdjacentHTML('beforeend', cardTemplate(data));
+  lightbox.refresh();
 }
 
 function clearMarkup() {
