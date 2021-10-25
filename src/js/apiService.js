@@ -29,6 +29,10 @@ export default class PicturesApiService {
     this.searchQuery = newQuery;
   }
 
+  get isFirstPage() {
+    return this.page === 1;
+  }
+
   incPage() {
     this.page += 1;
   }

@@ -52,9 +52,13 @@ function clearMarkup() {
 
 function onEntry(entries) {
   entries.forEach(entry => {
-    if (entry.isIntersecting && picturesApiService.query !== '') {
+    if (
+      entry.isIntersecting &&
+      picturesApiService.query.trim() !== '' &&
+      !picturesApiService.isFirstPage
+    ) {
       if (picturesApiService.reachMaxPage()) {
-        Notify.warning('We have shown you the maximum number of pictures.');
+        Notify.warning('We show you the maximum number of pictures.');
       } else {
         picturesApiService
           .fetchPictures()
